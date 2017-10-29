@@ -59,7 +59,8 @@ public class SendActivity extends Activity {
                     }
                 }
                 if(rightAdd && !address.isEmpty()) {
-                    Toast.makeText(SendActivity.this, "加密发送中，请稍后aaaaa...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SendActivity.this, "加密发送中，请稍后aaaaa" +
+                            "aa...", Toast.LENGTH_SHORT).show();
                     String content = msgInput.getText().toString();
                     String contents = "";
                     for (int i = 0; i < content.length(); i++) {
