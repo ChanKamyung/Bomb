@@ -105,7 +105,7 @@ public class SendActivity extends Activity {
                 finish();
             } else {
                 //发送失败
-                Toast.makeText(context, "发送所示失败", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "发送失败", Toast.LENGTH_SHORT).show();
             }
         }
 
