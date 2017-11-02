@@ -96,7 +96,7 @@ public class SendActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    Toast.makeText(SendActivity.this, "请输入正确号码", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SendActivity.this, "请输入正确号码AAAAA", Toast.LENGTH_SHORT).show();
                 }
             }
         });
