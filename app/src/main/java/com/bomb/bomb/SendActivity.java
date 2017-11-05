@@ -9,8 +9,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.telephony.SmsManager;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +23,7 @@ import android.widget.Toast;
  * Created by jinrong on 2017/10/25.
  */
 
-public class SendActivity extends Activity {
+public class SendActivity extends AppCompatActivity {
 
     private IntentFilter sendFilter;
     private SendStatusReceiver sendStatusReceiver;
@@ -29,6 +32,11 @@ public class SendActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("加密短信发送");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         InitView();
     }
@@ -116,5 +124,13 @@ public class SendActivity extends Activity {
         super.onDestroy();
         //在Activity摧毁的时候停止监听
         unregisterReceiver(sendStatusReceiver);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return true;
     }
 }

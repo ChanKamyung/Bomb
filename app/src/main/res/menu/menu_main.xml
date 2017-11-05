@@ -6,4 +6,9 @@
         android:title="@string/action_settings"
         android:orderInCategory="100"
         app:showAsAction="never" />
+    <item android:id="@+id/action_fingerprint"
+        android:title="@string/action_settings"
+        android:orderInCategory="90"
+        android:icon="@mipmap/ic_fp_40px"
+        app:showAsAction="ifRoom" />
 </menu>
