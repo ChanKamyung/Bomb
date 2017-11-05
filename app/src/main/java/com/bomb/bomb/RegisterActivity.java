@@ -56,8 +56,6 @@ public class RegisterActivity extends AppCompatActivity {
                     register_check();
                     break;
                 case R.id.register_btn_cancel:                     //取消按钮的监听事件,由注册界面返回登录界面
-                    Intent intent_Register_to_Login = new Intent(RegisterActivity.this,LogActivity.class) ;    //切换User Activity至Login Activity
-                    startActivity(intent_Register_to_Login);
                     finish();
                     break;
             }
@@ -86,8 +84,6 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(this, "注册用户失败，请重新尝试！",Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(this, "注册成功！",Toast.LENGTH_SHORT).show();
-                    Intent intent_Register_to_Login = new Intent(RegisterActivity.this,LogActivity.class) ;    //切换User Activity至Login Activity
-                    startActivity(intent_Register_to_Login);
                     finish();
                 }
             }
@@ -113,7 +109,8 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            finish();
+            Intent intent=new Intent(RegisterActivity.this,MainActivity.class);
+            startActivity(intent);
         }
         return true;
     }

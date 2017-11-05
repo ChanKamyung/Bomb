@@ -109,7 +109,7 @@ public class UserDataManager {             //用户数据管理类
     }
     //根据用户名注销
     public boolean deleteUserDatabyname(String name) {
-        return mSQLiteDatabase.delete(TABLE_NAME, USER_NAME + "=" + name, null) > 0;
+        return mSQLiteDatabase.delete(TABLE_NAME, USER_NAME + "=\"" + name+"\"", null) > 0;
     }
     //删除所有用户
     public boolean deleteAllUserDatas() {

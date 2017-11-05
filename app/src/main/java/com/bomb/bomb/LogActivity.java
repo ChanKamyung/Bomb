@@ -23,9 +23,7 @@ public class LogActivity extends Activity {                 //登录界面活动
     public int pwdresetFlag = 0;
     private EditText mAccount;                        //用户名编辑
     private EditText mPwd;                            //密码编辑
-    private Button mRegisterButton;                   //注册按钮
     private Button mLoginButton;                      //登录按钮
-    private Button mCancleButton;                     //注销按钮
     private CheckBox mRememberCheck;
 
     private SharedPreferences login_sp;
@@ -34,11 +32,10 @@ public class LogActivity extends Activity {                 //登录界面活动
     private View loginView;                           //登录
     private View loginSuccessView;
     private TextView loginSuccessShow;
-    private TextView mChangepwdText;
     private UserDataManager mUserDataManager;         //用户数据管理类
 
     private String administratorName = "jinrong";
-    private String administratorPw = "0000";
+    private String administratorPwd = "0000";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,12 +47,12 @@ public class LogActivity extends Activity {                 //登录界面活动
 
         //通过id找到相应的控件
         mAccount = (EditText) findViewById(R.id.login_edit_account);
-        mPwd = (EditText) findViewById(R.id.login_edit_pwd);
+        mPwd= (EditText) findViewById(R.id.login_edit_pwd);
         mLoginButton = (Button) findViewById(R.id.login_btn_login);
+
         loginView = findViewById(R.id.login_view);
         loginSuccessView = findViewById(R.id.login_success_view);
         loginSuccessShow = (TextView) findViewById(R.id.login_success_show);
-        mChangepwdText = (TextView) findViewById(R.id.login_text_change_pwd);
         mRememberCheck = (CheckBox) findViewById(R.id.Login_Remember);
 
         login_sp = getSharedPreferences("userInfo", 0);
@@ -72,17 +69,17 @@ public class LogActivity extends Activity {                 //登录界面活动
 
         //采用OnClickListener方法设置不同按钮按下之后的监听事件
         mLoginButton.setOnClickListener(mListener);
-        mChangepwdText.setOnClickListener(mListener);
+
 
         if (mUserDataManager == null) {
             mUserDataManager = new UserDataManager(this);
             mUserDataManager.openDataBase();                              //建立本地数据库
         }
         String defaultName = administratorName.trim();
-        String defaultPw = administratorPw.trim();
+        String defaultPwd = administratorPwd.trim();
         int count=mUserDataManager.findUserByName(defaultName);
         if(count<=0){
-            UserData mUser = new UserData(defaultName, defaultPw);
+            UserData mUser = new UserData(defaultName, defaultPwd);
             mUserDataManager.openDataBase();
             long flag = mUserDataManager.insertUserData(mUser);
         }
@@ -94,11 +91,6 @@ public class LogActivity extends Activity {                 //登录界面活动
                 case R.id.login_btn_login:                              //登录界面的登录按钮
                     login();
                     break;
-                case R.id.login_text_change_pwd:                             //登录界面的修改密码按钮
-                    Intent intent_Login_to_reset = new Intent(LogActivity.this, ResetPwActivity.class);    //切换Login Activity至User Activity
-                    startActivity(intent_Login_to_reset);
-                    finish();
-                    break;
             }
         }
     };
@@ -109,7 +101,7 @@ public class LogActivity extends Activity {                 //登录界面活动
             String userPwd = mPwd.getText().toString().trim();
             SharedPreferences.Editor editor = login_sp.edit();
             int result = mUserDataManager.findUserByNameAndPwd(userName, userPwd);
-            if (result == 1) {                                             //返回1说明用户名和密码均正确
+            if (result >= 1) {                                             //返回1说明用户名和密码均正确
                 //保存用户名和密码
                 editor.putString("USER_NAME", userName);
                 editor.putString("PASSWORD", userPwd);

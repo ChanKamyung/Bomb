@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class ResetPwActivity extends AppCompatActivity {
+public class ResetPwdActivity extends AppCompatActivity {
     private EditText mAccount;                        //用户名编辑
     private EditText mPwd_old;                        //密码编辑
     private EditText mPwd_new;                        //密码编辑
@@ -26,20 +26,20 @@ public class ResetPwActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_resetpw);
+        setContentView(R.layout.activity_resetpwd);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("重置密码");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mAccount = (EditText) findViewById(R.id.resetpw_edit_name);
-        mPwd_old = (EditText) findViewById(R.id.resetpw_edit_pwd_old);
+        mAccount = (EditText) findViewById(R.id.resetpwd_edit_name);
+        mPwd_old = (EditText) findViewById(R.id.resetpwd_edit_pwd_old);
         mPwd_new = (EditText) findViewById(R.id.resetpwd_edit_pwd_new);
-        mPwdCheck = (EditText) findViewById(R.id.resetpw_edit_pwd_check);
+        mPwdCheck = (EditText) findViewById(R.id.resetpwd_edit_pwd_check);
 
-        mSureButton = (Button) findViewById(R.id.resetpw_btn_sure);
-        mCancelButton = (Button) findViewById(R.id.resetpw_btn_cancel);
+        mSureButton = (Button) findViewById(R.id.resetpwd_btn_sure);
+        mCancelButton = (Button) findViewById(R.id.resetpwd_btn_cancel);
 
         mSureButton.setOnClickListener(m_resetpwd_Listener);      //注册界面两个按钮的监听事件
         mCancelButton.setOnClickListener(m_resetpwd_Listener);
@@ -51,12 +51,10 @@ public class ResetPwActivity extends AppCompatActivity {
     View.OnClickListener m_resetpwd_Listener = new View.OnClickListener() {    //不同按钮按下的监听事件选择
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.resetpw_btn_sure:                       //确认按钮的监听事件
+                case R.id.resetpwd_btn_sure:                       //确认按钮的监听事件
                     resetpwd_check();
                     break;
-                case R.id.resetpw_btn_cancel:                     //取消按钮的监听事件,由注册界面返回登录界面
-                    Intent intent_Resetpwd_to_Login = new Intent(ResetPwActivity.this,LogActivity.class) ;    //切换Resetpwd Activity至Login Activity
-                    startActivity(intent_Resetpwd_to_Login);
+                case R.id.resetpwd_btn_cancel:                     //取消按钮的监听事件,由注册界面返回登录界面
                     finish();
                     break;
             }
@@ -69,7 +67,7 @@ public class ResetPwActivity extends AppCompatActivity {
             String userPwd_new = mPwd_new.getText().toString().trim();
             String userPwdCheck = mPwdCheck.getText().toString().trim();
             int result=mUserDataManager.findUserByNameAndPwd(userName, userPwd_old);
-            if(result==1){                                             //返回1说明用户名和密码均正确,继续后续操作
+            if(result>=1){                                              //返回1说明用户名和密码均正确,继续后续操作
                 if(userPwd_new.equals(userPwdCheck)==false){           //两次密码输入不一样
                     Toast.makeText(this, "密码确认不正确，请重新输入密码！",Toast.LENGTH_SHORT).show();
                     return ;
@@ -82,8 +80,6 @@ public class ResetPwActivity extends AppCompatActivity {
                     }else{
                         Toast.makeText(this, "密码修改成功！",Toast.LENGTH_SHORT).show();
                         mUser.pwdresetFlag=1;
-                        Intent intent_Register_to_Login = new Intent(ResetPwActivity.this,LogActivity.class) ;    //切换User Activity至Login Activity
-                        startActivity(intent_Register_to_Login);
                         finish();
                     }
                 }

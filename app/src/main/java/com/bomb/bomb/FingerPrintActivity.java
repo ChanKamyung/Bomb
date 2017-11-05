@@ -9,6 +9,7 @@ package com.bomb.bomb;
  */
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Handler;
 import android.os.Message;
@@ -17,7 +18,9 @@ import android.support.v4.os.CancellationSignal;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -47,30 +50,18 @@ public class FingerPrintActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fingertprint);
 
         mResultInfo = (TextView) this.findViewById(R.id.fingerprint_status);
-        mCancelBtn = (Button) this.findViewById(R.id.cancel_button);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("指纹识别");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mStartBtn = (Button) this.findViewById(R.id.start_button);
 
-        mCancelBtn.setEnabled(false);
         mStartBtn.setEnabled(true);
-
-        // set button listeners
-        mCancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // set button state
-                mCancelBtn.setEnabled(false);
-                mStartBtn.setEnabled(true);
-
-                // cancel fingerprint auth here.
-                cancellationSignal.cancel();
-                cancellationSignal = null;
-            }
-        });
-
         mStartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // reset result info.
                 mResultInfo.setText(R.string.fingerprint_hint);
                 mResultInfo.setTextColor(getColor(R.color.hint_color));
 
@@ -82,9 +73,7 @@ public class FingerPrintActivity extends AppCompatActivity {
                     }
                     fingerprintManager.authenticate(cryptoObjectHelper.buildCryptoObject(), 0,
                             cancellationSignal, myAuthCallback, null);
-                    // set button state.
                     mStartBtn.setEnabled(false);
-                    mCancelBtn.setEnabled(true);
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(FingerPrintActivity.this, "Fingerprint init failed! Try again!", Toast.LENGTH_SHORT).show();
@@ -101,14 +90,12 @@ public class FingerPrintActivity extends AppCompatActivity {
                 switch (msg.what) {
                     case MSG_AUTH_SUCCESS:
                         setResultInfo(R.string.fingerprint_success);
-                        mCancelBtn.setEnabled(false);
-                        mStartBtn.setEnabled(true);
                         cancellationSignal = null;
+                        Intent intent=new Intent(FingerPrintActivity.this,MenuActivity.class);
+                        startActivity(intent);
                         break;
                     case MSG_AUTH_FAILED:
                         setResultInfo(R.string.fingerprint_not_recognized);
-                        mCancelBtn.setEnabled(false);
-                        mStartBtn.setEnabled(true);
                         cancellationSignal = null;
                         break;
                     case MSG_AUTH_ERROR:
@@ -221,11 +208,20 @@ public class FingerPrintActivity extends AppCompatActivity {
     private void setResultInfo(int stringId) {
         if (mResultInfo != null) {
             if (stringId == R.string.fingerprint_success) {
-                mResultInfo.setTextColor(getColor(R.color.success_color));
+                Toast.makeText(FingerPrintActivity.this, R.string.fingerprint_success, Toast.LENGTH_SHORT).show();
+                finish();
             } else {
                 mResultInfo.setTextColor(getColor(R.color.warning_color));
+                mResultInfo.setText(stringId);
             }
-            mResultInfo.setText(stringId);
+
         }
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return true;
     }
 }

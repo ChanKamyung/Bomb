@@ -50,14 +50,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/login_text_change_pwd"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_alignParentStart="true"
-                android:text="修改密码"
-                android:textSize="15dp" />
-
             <CheckBox
                 android:id="@+id/Login_Remember"
                 android:layout_width="100dp"
