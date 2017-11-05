@@ -17,12 +17,13 @@ import android.content.Intent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Toast;
 import android.provider.Settings;
 import android.net.Uri;
 
 public class MainActivity extends AppCompatActivity {
-
+    private UserDataManager mUserDataManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitle("Bomb!");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -64,8 +67,16 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch(id) {
+            case R.id.action_settings:
+                return true;
+            case R.id.action_fingerprint:
+                Intent intent=new Intent(MainActivity.this,FingerPrintActivity.class);
+                startActivity(intent);
+                break;
+            case android.R.id.home:
+                finish();
+                break;
         }
 
         return super.onOptionsItemSelected(item);
