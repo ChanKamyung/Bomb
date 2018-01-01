@@ -41,13 +41,13 @@ public class RegisterActivity extends AppCompatActivity {
         mSureButton = (Button) findViewById(R.id.register_btn_sure);
         mCancelButton = (Button) findViewById(R.id.register_btn_cancel);
 
+        if (mUserDataManager == null) {
+            mUserDataManager = new UserDataManager(this);//建立本地数据库
+        }
+        mUserDataManager.openDataBase();
+
         mSureButton.setOnClickListener(m_register_Listener);      //注册界面两个按钮的监听事件
         mCancelButton.setOnClickListener(m_register_Listener);
-
-        if (mUserDataManager == null) {
-            mUserDataManager = new UserDataManager(this);
-            mUserDataManager.openDataBase();                              //建立本地数据库
-        }
     }
     View.OnClickListener m_register_Listener = new View.OnClickListener() {    //不同按钮按下的监听事件选择
         public void onClick(View v) {
@@ -109,8 +109,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            Intent intent=new Intent(RegisterActivity.this,MainActivity.class);
-            startActivity(intent);
+            finish();
         }
         return true;
     }

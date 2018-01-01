@@ -41,6 +41,14 @@
         <activity android:name=".MenuActivity"
             android:label="Bomb!-Menu"></activity>
 
+        <activity android:name=".ChangeInfoActivity"
+            android:label="信息确认"></activity>
+
+        <activity android:name=".ResetInfoActivity"
+            android:label="信息修改"></activity>
+
+        <activity android:name=".DetailActivity"
+            android:label="显示数据库"></activity>
     </application>
 
     //发送短信
