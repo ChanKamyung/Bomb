@@ -20,6 +20,15 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".RegisterActivity"
+            android:label="注册"></activity>
+
+        <activity android:name=".ResetPwdActivity"
+            android:label="重置密码"></activity>
+
+        <activity android:name=".CancelActivity"
+            android:label="注销"></activity>
+
         <activity android:name=".MainActivity"
             android:label="@string/app_name"></activity>
 
@@ -52,8 +61,7 @@
 
         <activity android:name=".DetailActivity"
             android:label="显示数据库"></activity>
-        <activity  android:name=".ReceiveActivity"
-            android:label="接受信息"></activity>
+
     </application>
 
     //发送短信
