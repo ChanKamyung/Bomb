@@ -78,7 +78,7 @@ public class ResetInfoActivity extends AppCompatActivity {
                 UserData mUser = new UserData(userName, userPwd_new);
                 mUserDataManager.insertUserData(mUser);
                 mUserDataManager.deleteUserDatabyname(name);
-                Toast.makeText(this, "信息修改成功！"+name, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "信息修改成功！", Toast.LENGTH_SHORT).show();
                 finish();
                 return;
             }
