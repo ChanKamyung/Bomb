@@ -76,7 +76,7 @@ public class ChangeInfoActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }else{
-                Toast.makeText(this,"用户名/密码不正确，请重新输入！" ,Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"用户名或密码不正确，请重新输入！" ,Toast.LENGTH_SHORT).show();
             }
         }
     }
