@@ -12,6 +12,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.List;
+
 public class UserDataManager {             //用户数据管理类
     //一些宏定义和声明
     private static final String TAG = "UserDataManager";
@@ -65,6 +67,12 @@ public class UserDataManager {             //用户数据管理类
         mDatabaseHelper = new DataBaseManagementHelper(mContext);
         mSQLiteDatabase = mDatabaseHelper.getWritableDatabase();
     }
+
+    public void openDataBaseTemp() throws SQLException {
+        mDatabaseHelper = new DataBaseManagementHelper(mContext);
+        mSQLiteDatabase = mDatabaseHelper.getReadableDatabase();
+    }
+
     //关闭数据库
     public void closeDataBase() throws SQLException {
         mDatabaseHelper.close();
