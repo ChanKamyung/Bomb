@@ -33,7 +33,7 @@
             android:layout_height="60dp"
             android:ems="10"
             android:drawableLeft="@android:drawable/ic_menu_myplaces"
-            android:hint="请输入您的新用户名/大于4位"
+            android:hint="请输入您的新用户名/不能为4位"
             android:inputType="textPersonName" />
 
         <!--
