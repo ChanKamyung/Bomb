@@ -102,6 +102,9 @@ public class ResetInfoActivity extends AppCompatActivity {
         }else if(userPwdCheck.equals("")) {
             Toast.makeText(this, "密码确认为空，请重新输入！",Toast.LENGTH_SHORT).show();
             return false;
+        }else if(userName.length() <= 4){
+            Toast.makeText(this, "用户名需大于4位，请重新输入！",Toast.LENGTH_SHORT).show();
+            return false;
         }
         return true;
     }

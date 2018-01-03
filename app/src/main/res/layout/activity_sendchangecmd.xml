@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bomb.bomb.ResetInfoActivity">
+    tools:context="com.bomb.bomb.SendChangeCmdActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_height="wrap_content"
@@ -28,12 +28,12 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/name_new"
+            android:id="@+id/bomb_code"
             android:layout_width="400dp"
             android:layout_height="60dp"
             android:ems="10"
             android:drawableLeft="@android:drawable/ic_menu_myplaces"
-            android:hint="请输入您的新用户名/大于4位"
+            android:hint="请输入4位代号"
             android:inputType="textPersonName" />
 
         <!--
@@ -47,12 +47,21 @@
         -->
 
         <EditText
+            android:id="@+id/pwd_old"
+            android:layout_width="400dp"
+            android:layout_height="60dp"
+            android:ems="10"
+            android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+            android:hint="请输入原4位口令"
+            android:inputType="textPassword" />
+
+        <EditText
             android:id="@+id/pwd_new"
             android:layout_width="400dp"
             android:layout_height="60dp"
             android:ems="10"
             android:drawableLeft="@android:drawable/ic_lock_idle_lock"
-            android:hint="请输入您的新密码"
+            android:hint="请输入新4位口令"
             android:inputType="textPassword" />
 
         <EditText
@@ -61,7 +70,7 @@
             android:layout_height="60dp"
             android:ems="10"
             android:drawableLeft="@android:drawable/ic_lock_idle_lock"
-            android:hint="请确认您的新密码"
+            android:hint="请确认新4位口令"
             android:inputType="textPassword" />
 
         <LinearLayout

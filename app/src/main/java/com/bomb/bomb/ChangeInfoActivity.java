@@ -83,12 +83,6 @@ public class ChangeInfoActivity extends AppCompatActivity {
     public boolean isUserNameAndPwdValid() {
         String userName = mAccount.getText().toString().trim();
         String userPwd = mPwd.getText().toString().trim();
-        int count=mUserDataManager.findUserByName(userName);
-
-        if(count<=0){
-            Toast.makeText(this, "用户名不存在，请重新输入！",Toast.LENGTH_SHORT).show();
-            return false;
-        }
 
         if (userName.equals("")) {
             Toast.makeText(this, "用户名为空，请重新输入！", Toast.LENGTH_SHORT).show();
@@ -97,6 +91,13 @@ public class ChangeInfoActivity extends AppCompatActivity {
             Toast.makeText(this, "密码为空，请重新输入！", Toast.LENGTH_SHORT).show();
             return false;
         }
+
+        int count=mUserDataManager.findUserByName(userName);
+        if(count<=0){
+            Toast.makeText(this, "用户名不存在，请重新输入！",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         return true;
     }
 

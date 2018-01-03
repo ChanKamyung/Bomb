@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bomb.bomb.ResetInfoActivity">
+    tools:context="com.bomb.bomb.SendNmCmdActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_height="wrap_content"
@@ -20,6 +20,7 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
+
     <LinearLayout
         android:id="@+id/login_view"
         android:layout_width="match_parent"
@@ -28,40 +29,31 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/name_new"
+            android:id="@+id/bomb_code"
             android:layout_width="400dp"
             android:layout_height="60dp"
             android:ems="10"
             android:drawableLeft="@android:drawable/ic_menu_myplaces"
-            android:hint="请输入您的新用户名/大于4位"
-            android:inputType="textPersonName" />
+            android:hint="请输入4位代号"
+            android:inputType="textPersonName"/>
 
         <!--
 
-            <EditText android:id="@+id/edt_operator_name" style="@style/syncEditText"
-                android:hint="@string/hint_operator_name" />
-            <ImageView android:id="@+id/syncOperatorImg" style="@style/syncImageView"
-                android:layout_alignLeft="@+id/edt_operator_name"
-                android:layout_alignTop="@+id/edt_operator_name"
-                android:layout_alignBottom="@+id/edt_operator_name" android:src="@drawable/sync_operator" />
-        -->
+        <EditText android:id="@+id/edt_operator_name" style="@style/syncEditText"
+            android:hint="@string/hint_operator_name" />
+        <ImageView android:id="@+id/syncOperatorImg" style="@style/syncImageView"
+            android:layout_alignLeft="@+id/edt_operator_name"
+            android:layout_alignTop="@+id/edt_operator_name"
+            android:layout_alignBottom="@+id/edt_operator_name" android:src="@drawable/sync_operator" />
+    -->
 
         <EditText
-            android:id="@+id/pwd_new"
+            android:id="@+id/bomb_pwd"
             android:layout_width="400dp"
             android:layout_height="60dp"
             android:ems="10"
             android:drawableLeft="@android:drawable/ic_lock_idle_lock"
-            android:hint="请输入您的新密码"
-            android:inputType="textPassword" />
-
-        <EditText
-            android:id="@+id/pwd_check"
-            android:layout_width="400dp"
-            android:layout_height="60dp"
-            android:ems="10"
-            android:drawableLeft="@android:drawable/ic_lock_idle_lock"
-            android:hint="请确认您的新密码"
+            android:hint="请输入4位口令"
             android:inputType="textPassword" />
 
         <LinearLayout
