@@ -47,6 +47,12 @@ public class SendActivity extends AppCompatActivity {
         final EditText phone = (EditText) findViewById(R.id.phone_edit_text);
         final EditText msgInput = (EditText) findViewById(R.id.content_edit_text);
 
+        //新页面接收数据
+        Bundle bundle = this.getIntent().getExtras();
+        //接收msg值
+        String msg = bundle.getString("msg");
+        msgInput.setText(msg);
+
         //为发送短信设置要监听的广播
         sendFilter = new IntentFilter();
         sendFilter.addAction("SENT_SMS_ACTION");

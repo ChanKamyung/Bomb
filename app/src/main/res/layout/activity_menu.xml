@@ -35,6 +35,19 @@
             android:layout_height="wrap_content"
             android:text="修改信息" />
 
+
+        <Button
+            android:id="@+id/btn_addbomb"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="添加炸弹" />
+
+        <Button
+            android:id="@+id/btn_deletebomb"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="删除炸弹" />
+
         <Button
             android:id="@+id/btn_other"
             android:layout_width="150dp"

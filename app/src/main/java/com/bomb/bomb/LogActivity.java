@@ -35,8 +35,8 @@ public class LogActivity extends Activity {                 //登录界面活动
     private TextView loginSuccessShow;
     private UserDataManager mUserDataManager;         //用户数据管理类
 
-    private String administratorName = "jinrong";
-    private String administratorPwd = "0000";
+    final private String administratorName = "jinrong";
+    final private String administratorPwd = "0000";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

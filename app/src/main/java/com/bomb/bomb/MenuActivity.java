@@ -25,6 +25,8 @@ public class MenuActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         findViewById(R.id.btn_resetinfo).setOnClickListener(onClickListener);
+        findViewById(R.id.btn_addbomb).setOnClickListener(onClickListener);
+        findViewById(R.id.btn_deletebomb).setOnClickListener(onClickListener);
         findViewById(R.id.btn_other).setOnClickListener(onClickListener);
     }
 
@@ -34,6 +36,12 @@ public class MenuActivity extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.btn_resetinfo:
                     startActivity(new Intent(MenuActivity.this, ChangeInfoActivity.class));
+                    break;
+                case R.id.btn_addbomb:
+                    startActivity(new Intent(MenuActivity.this, AddBombActivity.class));
+                    break;
+                case R.id.btn_deletebomb:
+                    startActivity(new Intent(MenuActivity.this, DeleteBombActivity.class));
                     break;
                 case R.id.btn_other:
                     startActivity(new Intent(MenuActivity.this, DetailActivity.class));

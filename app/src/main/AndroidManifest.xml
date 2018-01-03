@@ -20,17 +20,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".RegisterActivity"
-            android:label="注册"></activity>
-
-        <activity android:name=".ResetPwdActivity"
-            android:label="重置密码"></activity>
-
-        <activity android:name=".CancelActivity"
-            android:label="注销"></activity>
-
         <activity android:name=".MainActivity"
             android:label="@string/app_name"></activity>
+
+        <activity android:name=".SendNmCmdActivity"
+            android:label="输入参数"></activity>
+
+        <activity android:name=".SendChangeCmdActivity"
+            android:label="输入参数"></activity>
 
         <activity android:name=".SendActivity"
             android:label="加密短信发送"></activity>
@@ -46,6 +43,12 @@
 
         <activity android:name=".ResetInfoActivity"
             android:label="信息修改"></activity>
+
+        <activity android:name=".AddBombActivity"
+            android:label="添加炸弹"></activity>
+
+        <activity android:name=".DeleteBombActivity"
+            android:label="删除炸弹"></activity>
 
         <activity android:name=".DetailActivity"
             android:label="显示数据库"></activity>
