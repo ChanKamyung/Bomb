@@ -88,22 +88,7 @@ public class SendChangeCmdActivity extends AppCompatActivity {
                         }
                     }
 
-               /* if(rightAdd && !address.isEmpty()) {
-                    Toast.makeText(SendNmCmdActivity.this, "加密发送中，请稍后...", Toast.LENGTH_SHORT).show();
-                    String content = msgInput.getText().toString();
-                    String contents = "";
-                    for (int i = 0; i < content.length(); i++) {
-                        try {
-                            contents += (char) (content.charAt(i) + 8);
-                        } catch (Exception e) {
-                            contents += (char) (content.charAt(i));
-                        }
-                    }
-                    contents += ' ';
-                    //Log.i("hahaha",contents);
-*/
-                    //发送短信
-                    // 并使用sendTextMessage的第四个参数对短信的发送状态进行监控
+
                     SmsManager smsManager = SmsManager.getDefault();
                     Intent sentIntent = new Intent("SENT_SMS_ACTION");
                     PendingIntent pi = PendingIntent.getBroadcast(SendChangeCmdActivity.this, 0, sentIntent, 0);

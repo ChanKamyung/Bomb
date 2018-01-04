@@ -6,14 +6,14 @@
     <string name="fingerprint_description">确认您的指纹</string>
     <string name="fingerprint_hint">触摸传感器</string>
 
-    <!-- Button text -->
+
     <string name="start_btn">开始</string>
     <string name="cancel_btn">取消</string>
 
     <string name="fingerprint_success">指纹识别成功.</string>
     <string name="fingerprint_not_recognized">指纹识别失败，请重试</string>
 
-    <!-- Dialog info -->
+
     <string name="no_sensor_dialog_title">没有指纹传感器</string>
     <string name="no_sensor_dialog_message">你的设备上没有指纹传感器，请点击取消退出</string>
     <string name="no_fingerprint_enrolled_dialog_title">未录入指纹</string>
@@ -23,7 +23,7 @@
     <string name="ok_btn_dialog">好的</string>
     <string name="cancel_btn_dialog">取消</string>
 
-    <!-- auth result error amd help code warning -->
+
     <string name="AcquiredGood_warning">影像很好。</string>
     <string name="AcquiredImageDirty_warning">可能由于传感器问题或指纹上有污垢，导致指纹影像模糊。
         请多次录入以排除其他干扰获得清晰指纹。

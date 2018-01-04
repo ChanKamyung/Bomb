@@ -1,8 +1,5 @@
 package com.bomb.bomb;
 
-import android.Manifest;
-import android.support.v4.app.ActivityCompat;
-import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -12,7 +9,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.SmsManager;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -84,10 +80,7 @@ public class SendActivity extends AppCompatActivity {
                         }
                     }
                     contents += ' ';
-                    //Log.i("hahaha",contents);
 
-                    //发送短信
-                    // 并使用sendTextMessage的第四个参数对短信的发送状态进行监控
                     SmsManager smsManager = SmsManager.getDefault();
                     Intent sentIntent = new Intent("SENT_SMS_ACTION");
                     PendingIntent pi = PendingIntent.getBroadcast(SendActivity.this, 0, sentIntent, 0);
