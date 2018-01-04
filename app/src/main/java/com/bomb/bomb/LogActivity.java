@@ -143,6 +143,9 @@ public class LogActivity extends Activity {                 //登录界面活动
             Toast.makeText(this, "密码为空，请重新输入！",
                     Toast.LENGTH_SHORT).show();
             return false;
+        }else if(mAccount.getText().toString().trim().length() == 4){
+            Toast.makeText(this, "登录失败！请输入正确的用户名密码", Toast.LENGTH_SHORT).show();
+            return false;
         }
         return true;
     }
