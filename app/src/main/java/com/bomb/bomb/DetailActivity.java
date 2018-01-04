@@ -9,12 +9,11 @@ import android.app.Activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
-import android.content.ContentValues;
+
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.drawable.LayerDrawable;
+
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

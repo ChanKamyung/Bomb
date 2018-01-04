@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import static com.bomb.bomb.R.id.toolbar;
+
 
 
 public class ChangeInfoActivity extends AppCompatActivity {

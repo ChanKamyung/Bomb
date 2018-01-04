@@ -15,17 +15,15 @@ import java.security.KeyStore;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 
-/// <summary>
-/// Sample code for building a CryptoWrapper
-/// </summary>
+
 public class CryptoObjectHelper {
-    // This can be key name you want. Should be unique for the app.
+
     static final String KEY_NAME = "com.createchance.android.sample.fingerprint_authentication_key";
 
-    // We always use this keystore on Android.
+
     static final String KEYSTORE_NAME = "AndroidKeyStore";
 
-    // Should be no need to change these values.
+
     static final String KEY_ALGORITHM = KeyProperties.KEY_ALGORITHM_AES;
     static final String BLOCK_MODE = KeyProperties.BLOCK_MODE_CBC;
     static final String ENCRYPTION_PADDING = KeyProperties.ENCRYPTION_PADDING_PKCS7;

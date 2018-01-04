@@ -65,7 +65,7 @@ public class FingerPrintActivity extends AppCompatActivity {
                 mResultInfo.setText(R.string.fingerprint_hint);
                 mResultInfo.setTextColor(getColor(R.color.hint_color));
 
-                // start fingerprint auth here.
+
                 try {
                     CryptoObjectHelper cryptoObjectHelper = new CryptoObjectHelper();
                     if (cancellationSignal == null) {
@@ -108,11 +108,11 @@ public class FingerPrintActivity extends AppCompatActivity {
             }
         };
 
-        // init fingerprint.
+
         fingerprintManager = FingerprintManagerCompat.from(this);
 
         if (!fingerprintManager.isHardwareDetected()) {
-            // no fingerprint sensor is detected, show dialog to tell user.
+
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(R.string.no_sensor_dialog_title);
             builder.setMessage(R.string.no_sensor_dialog_message);
@@ -124,10 +124,10 @@ public class FingerPrintActivity extends AppCompatActivity {
                     finish();
                 }
             });
-            // show this dialog.
+
             builder.create().show();
         } else if (!fingerprintManager.hasEnrolledFingerprints()) {
-            // no fingerprint image has been enrolled.
+
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(R.string.no_fingerprint_enrolled_dialog_title);
             builder.setMessage(R.string.no_fingerprint_enrolled_dialog_message);
@@ -139,7 +139,7 @@ public class FingerPrintActivity extends AppCompatActivity {
                     finish();
                 }
             });
-            // show this dialog
+
             builder.create().show();
         } else {
             try {
