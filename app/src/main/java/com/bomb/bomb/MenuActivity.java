@@ -24,26 +24,30 @@ public class MenuActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        findViewById(R.id.btn_register).setOnClickListener(onClickListener);
-        findViewById(R.id.btn_resetpw).setOnClickListener(onClickListener);
-        findViewById(R.id.btn_more).setOnClickListener(onClickListener);
+        findViewById(R.id.btn_resetinfo).setOnClickListener(onClickListener);
+        findViewById(R.id.btn_addbomb).setOnClickListener(onClickListener);
+        findViewById(R.id.btn_deletebomb).setOnClickListener(onClickListener);
+        findViewById(R.id.btn_other).setOnClickListener(onClickListener);
     }
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.btn_register:
-                    startActivity(new Intent(MenuActivity.this, RegisterActivity.class));
+                case R.id.btn_resetinfo:
+                    startActivity(new Intent(MenuActivity.this, ChangeInfoActivity.class));
                     break;
-                case R.id.btn_resetpw:
-                    startActivity(new Intent(MenuActivity.this, ResetPwdActivity.class));
+                case R.id.btn_addbomb:
+                    startActivity(new Intent(MenuActivity.this, AddBombActivity.class));
                     break;
-                case R.id.btn_cancel:
-                    startActivity(new Intent(MenuActivity.this, CancelActivity.class));
+                case R.id.btn_deletebomb:
+                    startActivity(new Intent(MenuActivity.this, DeleteBombActivity.class));
+                    break;
+                case R.id.btn_other:
+                    startActivity(new Intent(MenuActivity.this, DetailActivity.class));
                     break;
                 default:
-                    Toast.makeText(MenuActivity.this, "待定", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MenuActivity.this, "待开发", Toast.LENGTH_SHORT).show();
             }
         }
     };

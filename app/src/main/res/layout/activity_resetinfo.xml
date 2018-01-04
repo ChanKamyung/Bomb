@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bomb.bomb.ResetInfoActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+    <LinearLayout
+        android:id="@+id/login_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="130dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/name_new"
+            android:layout_width="400dp"
+            android:layout_height="60dp"
+            android:ems="10"
+            android:drawableLeft="@android:drawable/ic_menu_myplaces"
+            android:hint="请输入您的新用户名/不能为4位"
+            android:inputType="textPersonName" />
+
+        <!--
+
+            <EditText android:id="@+id/edt_operator_name" style="@style/syncEditText"
+                android:hint="@string/hint_operator_name" />
+            <ImageView android:id="@+id/syncOperatorImg" style="@style/syncImageView"
+                android:layout_alignLeft="@+id/edt_operator_name"
+                android:layout_alignTop="@+id/edt_operator_name"
+                android:layout_alignBottom="@+id/edt_operator_name" android:src="@drawable/sync_operator" />
+        -->
+
+        <EditText
+            android:id="@+id/pwd_new"
+            android:layout_width="400dp"
+            android:layout_height="60dp"
+            android:ems="10"
+            android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+            android:hint="请输入您的新密码"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/pwd_check"
+            android:layout_width="400dp"
+            android:layout_height="60dp"
+            android:ems="10"
+            android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+            android:hint="请确认您的新密码"
+            android:inputType="textPassword" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="取消"
+                android:textColor="#000"
+                android:textSize="20dp" />
+
+            <Button
+                android:id="@+id/btn_sure"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="确定"
+                android:textColor="#000"
+                android:textSize="20dp" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

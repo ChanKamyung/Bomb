@@ -7,6 +7,7 @@ package com.bomb.bomb;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -34,8 +35,8 @@ public class LogActivity extends Activity {                 //登录界面活动
     private TextView loginSuccessShow;
     private UserDataManager mUserDataManager;         //用户数据管理类
 
-    private String administratorName = "jinrong";
-    private String administratorPwd = "0000";
+    final private String administratorName = "jinrong";
+    final private String administratorPwd = "0000";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,22 +68,32 @@ public class LogActivity extends Activity {                 //登录界面活动
             mRememberCheck.setChecked(true);
         }
 
-        //采用OnClickListener方法设置不同按钮按下之后的监听事件
-        mLoginButton.setOnClickListener(mListener);
-
-
         if (mUserDataManager == null) {
-            mUserDataManager = new UserDataManager(this);
-            mUserDataManager.openDataBase();                              //建立本地数据库
+            mUserDataManager = new UserDataManager(this);             //建立本地数据库
         }
+        mUserDataManager.openDataBase();
+
         String defaultName = administratorName.trim();
         String defaultPwd = administratorPwd.trim();
-        int count=mUserDataManager.findUserByName(defaultName);
-        if(count<=0){
-            UserData mUser = new UserData(defaultName, defaultPwd);
-            mUserDataManager.openDataBase();
-            long flag = mUserDataManager.insertUserData(mUser);
+
+        Cursor cursor = mUserDataManager.fetchAllUserDatas();
+        int cursorSum = 0;
+        while (cursor.moveToNext()) {
+            cursorSum++;
         }
+
+        if(cursorSum == 0){
+            UserData mUser = new UserData(defaultName, defaultPwd);
+            long flag = mUserDataManager.insertUserData(mUser);
+            if (flag == -1) {
+                Toast.makeText(this,"初始化失败，请重新尝试！",Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+        Toast.makeText(this,"初始化成功！",Toast.LENGTH_SHORT).show();
+
+        //采用OnClickListener方法设置不同按钮按下之后的监听事件
+        mLoginButton.setOnClickListener(mListener);
     }
 
     OnClickListener mListener = new OnClickListener() {                  //不同按钮按下的监听事件选择
@@ -114,8 +125,7 @@ public class LogActivity extends Activity {                 //登录界面活动
                 }
                 editor.commit();
 
-                Intent classroomactivity = new Intent(LogActivity.this, MainActivity.class);    //切换Login Activity至User Activity
-                startActivity(classroomactivity);
+                startActivity(new Intent(LogActivity.this, MainActivity.class));    //切换Login Activity至User Activity
                 finish();
                 Toast.makeText(this, "登陆成功", Toast.LENGTH_SHORT).show();//登录成功提示
             } else if (result == 0) {

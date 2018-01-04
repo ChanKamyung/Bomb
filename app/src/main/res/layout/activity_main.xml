@@ -21,14 +21,57 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <TextView
+        android:id="@+id/cloud"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F0FFFFFF"/>
+
     <include layout="@layout/content_main"/>
 
-    <android.support.design.widget.FloatingActionButton
+    <com.ddz.floatingactionbutton.FloatingActionMenu
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        app:fab_addButtonColorPressed="@color/warning_color"
+        app:fab_addButton_collapsed_rotation="0"
+        app:fab_addButton_expanded_rotation="45"
+        app:fab_addButton_rotation_duration="800"
+        app:fab_labelStyle="@style/lable_style"
+        app:fab_labelsPosition="left">
+
+        <com.ddz.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_bomb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/warning_color"
+            app:fab_colorPressed="@color/black_semi_transparent"
+            app:fab_icon="@android:drawable/stat_sys_warning"
+            app:fab_size="mini"
+            app:fab_title="引爆炸弹" />
+
+        <com.ddz.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_gps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/warning_color"
+            app:fab_colorPressed="@color/black_semi_transparent"
+            app:fab_icon="@android:drawable/ic_menu_mylocation"
+            app:fab_size="mini"
+            app:fab_title="获取定位" />
+
+        <com.ddz.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/warning_color"
+            app:fab_colorPressed="@color/black_semi_transparent"
+            app:fab_icon="@android:drawable/stat_notify_sync"
+            app:fab_size="mini"
+            app:fab_title="修改口令" />
+    </com.ddz.floatingactionbutton.FloatingActionMenu>
 
 </android.support.design.widget.CoordinatorLayout>

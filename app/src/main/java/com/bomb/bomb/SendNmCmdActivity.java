@@ -1,18 +1,15 @@
 package com.bomb.bomb;
 
-import android.Manifest;
-import android.support.v4.app.ActivityCompat;
-import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.SmsManager;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -20,38 +17,48 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 /**
- * Created by jinrong on 2017/10/25.
+ * Created by jinrong on 2018/1/3.
  */
 
-public class SendActivity extends AppCompatActivity {
+public class SendNmCmdActivity extends AppCompatActivity {
 
+    private Button mCancelButton;
+    private Button mSureButton;
+    private EditText mCode;
+    private EditText mPwd;
     private IntentFilter sendFilter;
     private SendStatusReceiver sendStatusReceiver;
+    private UserDataManager mUserDataManager;         //用户数据管理类
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_send);
+        setContentView(R.layout.activity_sendnmcmd);
+
+        mCancelButton = (Button) findViewById(R.id.btn_cancel);
+        mSureButton = (Button) findViewById(R.id.btn_sure);
+        mCode = (EditText) findViewById(R.id.bomb_code);
+        mPwd = (EditText) findViewById(R.id.bomb_pwd);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("加密短信发送");
+        toolbar.setTitle("输入参数");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         InitView();
     }
 
     private void InitView() {
-        Button cancel = (Button) findViewById(R.id.cancel_edit);
-        Button send = (Button) findViewById(R.id.send_edit);
-        final EditText phone = (EditText) findViewById(R.id.phone_edit_text);
-        final EditText msgInput = (EditText) findViewById(R.id.content_edit_text);
+
+        if (mUserDataManager == null) {
+            mUserDataManager = new UserDataManager(this);//建立本地数据库
+        }
+        mUserDataManager.openDataBase();
 
         //新页面接收数据
         Bundle bundle = this.getIntent().getExtras();
-        //接收msg值
-        String msg = bundle.getString("msg");
-        msgInput.setText(msg);
+        //接收cmd值
+        final String cmd = bundle.getString("cmd");
 
         //为发送短信设置要监听的广播
         sendFilter = new IntentFilter();
@@ -59,21 +66,26 @@ public class SendActivity extends AppCompatActivity {
         sendStatusReceiver = new SendStatusReceiver();
         registerReceiver(sendStatusReceiver, sendFilter);
 
-        send.setOnClickListener(new View.OnClickListener() {
+        mSureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean rightAdd = true;
-                //接收edittext中的内容,并且进行加密
-                //倘若char+8超出了表示范围，则把原字符发过去
-                String address = phone.getText().toString();
-                for(int i = 0; i < address.length(); i++){
-                    if(address.charAt(i) < '0' || address.charAt(i) > '9'){
-                        rightAdd = false;
-                        break;
+                if (isCodeAndPwdValid()) {
+                    //接收edittext中的内容,并且进行加密
+                    //倘若char+8超出了表示范围，则把原字符发过去
+                    String mPhone = "";
+
+                    Cursor cursor = mUserDataManager.fetchAllUserDatas();
+                    while (cursor.moveToNext()) {
+                        String bomb_code = cursor.getString(1);
+                        String bomb_num = cursor.getString(2);
+                        if (bomb_code.equals(mCode.getText().toString().trim())) {
+                            mPhone += bomb_num;
+                            break;
+                        }
                     }
-                }
-                if(rightAdd && !address.isEmpty()) {
-                    Toast.makeText(SendActivity.this, "加密发送中，请稍后...", Toast.LENGTH_SHORT).show();
+
+               /* if(rightAdd && !address.isEmpty()) {
+                    Toast.makeText(SendNmCmdActivity.this, "加密发送中，请稍后...", Toast.LENGTH_SHORT).show();
                     String content = msgInput.getText().toString();
                     String contents = "";
                     for (int i = 0; i < content.length(); i++) {
@@ -85,29 +97,42 @@ public class SendActivity extends AppCompatActivity {
                     }
                     contents += ' ';
                     //Log.i("hahaha",contents);
-
+*/
                     //发送短信
                     // 并使用sendTextMessage的第四个参数对短信的发送状态进行监控
                     SmsManager smsManager = SmsManager.getDefault();
                     Intent sentIntent = new Intent("SENT_SMS_ACTION");
-                    PendingIntent pi = PendingIntent.getBroadcast(SendActivity.this, 0, sentIntent, 0);
-                    if (!address.isEmpty() && !contents.toString().isEmpty()) {
-                        smsManager.sendTextMessage(address, null, contents.toString(), pi, null);
-                    }
-                }
-                else {
-                    Toast.makeText(SendActivity.this, "请输入正确号码AAAAA", Toast.LENGTH_SHORT).show();
+                    PendingIntent pi = PendingIntent.getBroadcast(SendNmCmdActivity.this, 0, sentIntent, 0);
+                    smsManager.sendTextMessage(mPhone, null, cmd + mPwd.getText().toString().trim(), pi, null);
                 }
             }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
+        mCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
     }
+
+    public boolean isCodeAndPwdValid() {
+        if(mCode.getText().toString().trim().length() != 4){
+            Toast.makeText(SendNmCmdActivity.this, "代号应为4位，请重新输入！", Toast.LENGTH_SHORT).show();
+            return false;
+        }else if(mPwd.getText().toString().trim().length() != 4){
+            Toast.makeText(SendNmCmdActivity.this, "口令应为4位，请重新输入！", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(mUserDataManager.findUserByName(mCode.getText().toString().trim()) <= 0 ){
+            Toast.makeText(SendNmCmdActivity.this, "该代号不存在，请重新输入！", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+
 
     class SendStatusReceiver extends BroadcastReceiver {
 
