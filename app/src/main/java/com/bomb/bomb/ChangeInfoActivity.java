@@ -93,7 +93,7 @@ public class ChangeInfoActivity extends AppCompatActivity {
         }
 
         int count=mUserDataManager.findUserByName(userName);
-        if(count<=0){
+        if(userName.length() == 4 || count<=0){
             Toast.makeText(this, "用户名不存在，请重新输入！",Toast.LENGTH_SHORT).show();
             return false;
         }
