@@ -35,7 +35,7 @@
             android:ems="10"
             android:drawableLeft="@android:drawable/ic_menu_myplaces"
             android:hint="请输入4位代号"
-            android:inputType="textPersonName"/>
+            android:phoneNumber="true"/>
 
 
 

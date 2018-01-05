@@ -33,7 +33,6 @@ public class AddBombActivity extends AppCompatActivity {
 
         mCode = (EditText) findViewById(R.id.bomb_code);
         mNum = (EditText) findViewById(R.id.bomb_num);
-        mNumCheck = (EditText) findViewById(R.id.bomb_check);
 
         mSureButton = (Button) findViewById(R.id.btn_sure);
         mCancelButton = (Button) findViewById(R.id.btn_cancel);
@@ -62,7 +61,6 @@ public class AddBombActivity extends AppCompatActivity {
         if (isUserNameAndPwdValid()) {
             String bombCode = mCode.getText().toString().trim();
             String bombNum = mNum.getText().toString().trim();
-            String bombNumCheck = mNumCheck.getText().toString().trim();
 
             Cursor cursor = mUserDataManager.fetchAllUserDatas();
             while (cursor.moveToNext()) {
@@ -78,21 +76,18 @@ public class AddBombActivity extends AppCompatActivity {
                 }
             }
 
-            if(bombNum.equals(bombNumCheck)==false){     //两次号码输入不一样
-                Toast.makeText(this, "号码不一致，请重新输入！",Toast.LENGTH_SHORT).show();
-                return ;
-            } else {
-                UserData mBomb = new UserData(bombCode, bombNum);
-                mUserDataManager.openDataBase();
-                long flag = mUserDataManager.insertUserData(mBomb); //新建用户信息
-                if (flag == -1) {
-                    Toast.makeText(this, "添加失败，请重新尝试！",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(this, "添加成功！",Toast.LENGTH_SHORT).show();
-                    finish();
-                    return;
-                }
+
+            UserData mBomb = new UserData(bombCode, bombNum);
+            mUserDataManager.openDataBase();
+            long flag = mUserDataManager.insertUserData(mBomb); //新建用户信息
+            if (flag == -1) {
+                Toast.makeText(this, "添加失败，请重新尝试！",Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(this, "添加成功！",Toast.LENGTH_SHORT).show();
+                finish();
+                return;
             }
+
         }
     }
     public boolean isUserNameAndPwdValid() {
@@ -100,12 +95,9 @@ public class AddBombActivity extends AppCompatActivity {
             Toast.makeText(this, "代号应为4位，请重新输入！",
                     Toast.LENGTH_SHORT).show();
             return false;
-        } else if (mNum.getText().toString().trim().length() != 11) {
+        }
+        else if (mNum.getText().toString().trim().length() != 11) {
             Toast.makeText(this, "号码应为11位，请重新输入！",
-                    Toast.LENGTH_SHORT).show();
-            return false;
-        }else if(mNumCheck.getText().toString().trim().length() != 11) {
-            Toast.makeText(this, "号码确认应为11位，请重新输入！ ",
                     Toast.LENGTH_SHORT).show();
             return false;
         }
