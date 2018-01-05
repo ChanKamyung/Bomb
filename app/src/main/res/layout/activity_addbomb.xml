@@ -37,15 +37,7 @@
             android:hint="请输入炸弹代号/4位"
             android:phoneNumber="true"/>
 
-        <!--
 
-        <EditText android:id="@+id/edt_operator_name" style="@style/syncEditText"
-            android:hint="@string/hint_operator_name" />
-        <ImageView android:id="@+id/syncOperatorImg" style="@style/syncImageView"
-            android:layout_alignLeft="@+id/edt_operator_name"
-            android:layout_alignTop="@+id/edt_operator_name"
-            android:layout_alignBottom="@+id/edt_operator_name" android:src="@drawable/sync_operator" />
-    -->
 
         <EditText
             android:id="@+id/bomb_num"

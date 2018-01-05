@@ -12,7 +12,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import java.util.List;
 
 public class UserDataManager {             //用户数据管理类
     //一些宏定义和声明
@@ -22,8 +21,7 @@ public class UserDataManager {             //用户数据管理类
     public static final String ID = "_id";
     public static final String USER_NAME = "user_name";
     public static final String USER_PWD = "user_pwd";
-    //    public static final String SILENT = "silent";
-//    public static final String VIBRATE = "vibrate";
+
     private static final int DB_VERSION = 2;
     private Context mContext = null;
 
@@ -88,16 +86,16 @@ public class UserDataManager {             //用户数据管理类
     }
     //更新用户信息，如修改密码
     public boolean updateUserData(UserData userData) {
-        //int id = userData.getUserId();
+
         String userName = userData.getUserName();
         String userPwd = userData.getUserPwd();
         ContentValues values = new ContentValues();
         values.put(USER_NAME, userName);
         values.put(USER_PWD, userPwd);
         return mSQLiteDatabase.update(TABLE_NAME, values,null, null) > 0;
-        //return mSQLiteDatabase.update(TABLE_NAME, values, ID + "=" + id, null) > 0;
+
     }
-    //
+
     public Cursor fetchUserData(int id) throws SQLException {
         Cursor mCursor = mSQLiteDatabase.query(false, TABLE_NAME, null, ID
                 + "=" + id, null, null, null, null, null);
@@ -106,7 +104,7 @@ public class UserDataManager {             //用户数据管理类
         }
         return mCursor;
     }
-    //
+
     public Cursor fetchAllUserDatas() {
         return mSQLiteDatabase.query(TABLE_NAME, null, null, null, null, null,
                 null);
@@ -124,7 +122,7 @@ public class UserDataManager {             //用户数据管理类
         return mSQLiteDatabase.delete(TABLE_NAME, null, null) > 0;
     }
 
-    //
+
     public String getStringByColumnName(String columnName, int id) {
         Cursor mCursor = fetchUserData(id);
         int columnIndex = mCursor.getColumnIndex(columnName);
@@ -132,7 +130,7 @@ public class UserDataManager {             //用户数据管理类
         mCursor.close();
         return columnValue;
     }
-    //
+
     public boolean updateUserDataById(String columnName, int id,
                                       String columnValue) {
         ContentValues values = new ContentValues();
