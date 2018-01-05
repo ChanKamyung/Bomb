@@ -35,7 +35,7 @@
             android:ems="10"
             android:drawableLeft="@android:drawable/ic_menu_myplaces"
             android:hint="请输入炸弹代号/4位"
-            android:inputType="textPersonName"/>
+            android:phoneNumber="true"/>
 
         <!--
 
@@ -54,7 +54,7 @@
             android:ems="10"
             android:drawableLeft="@android:drawable/ic_lock_idle_lock"
             android:hint="请输入炸弹号码/11位"
-            android:inputType="textPassword" />
+            android:phoneNumber="true" />
 
         <EditText
             android:id="@+id/bomb_check"
@@ -62,7 +62,7 @@
             android:layout_height="60dp"
             android:ems="10"
             android:drawableLeft="@android:drawable/ic_lock_idle_lock"
-            android:inputType="textPassword"
+            android:phoneNumber="true"
             android:hint="请确认炸弹号码/11位" />
 
         <LinearLayout

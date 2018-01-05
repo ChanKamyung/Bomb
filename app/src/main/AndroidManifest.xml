@@ -52,6 +52,8 @@
 
         <activity android:name=".DetailActivity"
             android:label="显示数据库"></activity>
+        <activity  android:name=".ReceiveActivity"
+            android:label="接受信息"></activity>
     </application>
 
     //发送短信

@@ -35,7 +35,8 @@
             android:ems="10"
             android:drawableLeft="@android:drawable/ic_menu_myplaces"
             android:hint="请输入炸弹代号/4位"
-            android:inputType="textPersonName"/>
+            android:phoneNumber="true"/>
+
 
         <LinearLayout
             android:layout_width="match_parent"
