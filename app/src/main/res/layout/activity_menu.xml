@@ -52,7 +52,7 @@
             android:id="@+id/btn_other"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="其他" />
+            android:text="查看信息" />
 
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

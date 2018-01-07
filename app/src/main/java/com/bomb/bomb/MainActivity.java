@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.fab_gps:
                     //传递cmd参数
-                    bundle.putString("msg", "GPS#");
+                    bundle.putString("cmd", "GPS#");
                     intent = new Intent(MainActivity.this, SendNmCmdActivity.class);
                     intent.putExtras(bundle);
                     startActivity(intent);
